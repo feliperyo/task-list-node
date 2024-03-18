@@ -7,17 +7,16 @@ app.listen(3001);
 app.use(express.json());
 app.use(cors());
 
-const tasks = [];
+const list = [];
 
 app.get("/tasks", (request, response) => {
-  return response.json(tasks);
+  return response.json(list);
 });
 
 app.post("/tasks", (request, response) => {
-  const { newTask } = request.body;
+  const { task } = request.body;
 
-  const task = { id: uuid.v4(), name: newTask };
-  tasks.push(task);
+  list.push({ id: uuid.v4(), task });
 
-  return response.status(201).json(task);
+  return response.status(201).json(list);
 });
